@@ -29,6 +29,10 @@ class CustomerController (private val service: CustomerService){
         service.create(dto)
     }
 
+    @PutMapping("/{id}")
+    fun update(@PathVariable id: Long, @RequestBody dto: NewCustomerDto){
+        service.update(id, dto)
+    }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -36,22 +40,30 @@ class CustomerController (private val service: CustomerService){
         service.delete(id)
     }
 
-    @GetMapping("/customers/{id}/contacts/{contactid}")
+    @GetMapping("/{id}/contacts")
+    fun list(@PathVariable id:Long): List<Contact> {
+        return service.list(id)
+    }
+
+    @GetMapping("/{id}/contacts/{contactid}")
     fun searchById(@PathVariable id:Long,@PathVariable contactid: Long): Contact {
         return service.searchById(id, contactid)
 
     }
 
-    @PostMapping("/customers/{id}/contacts")
+    @PostMapping("/{id}/contacts")
     fun create(@PathVariable id: Long, @RequestBody dto: NewContactsDto){
         service.create(id, dto)
     }
 
+    @PutMapping("/{id}/contacts/{contactid}")
+    fun update(@PathVariable id: Long, @PathVariable contactid: Long, @RequestBody dto: NewContactsDto){
+        service.update(id, contactid, dto)
+    }
 
-
-    @DeleteMapping("/customers/{id}/contacts/{contactid}")
+    @DeleteMapping("/{id}/contacts/{contactid}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun delete(@PathVariable id: Long, contactid: Long) {
+    fun delete(@PathVariable id: Long,@PathVariable contactid: Long) {
         service.delete(id, contactid)
     }
 }

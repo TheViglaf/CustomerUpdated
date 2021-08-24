@@ -1,9 +1,11 @@
 package com.devtest.customer.model
 
+import java.util.*
+
 data class Customer(
-    val id: Long?,
-    val name: String,
-    val phone: String,
-    val address: String,
-    var contact: List<Contact> = ArrayList()
+        var id: Long?,
+        var name: String,
+        var phone: String,
+        var address: String,
+        var contact: List<Contact> = ArrayList<Contact>()
 )
