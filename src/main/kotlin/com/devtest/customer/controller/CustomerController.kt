@@ -1,5 +1,6 @@
 package com.devtest.customer.controller
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import com.devtest.customer.dto.NewContactsDto
 import com.devtest.customer.dto.NewCustomerDto
 import com.devtest.customer.model.Contact
@@ -8,7 +9,7 @@ import com.devtest.customer.service.CustomerService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
-
+@CrossOrigin(origins = ["http://localhost:3000"])
 @RestController
 @RequestMapping("/customers")
 class CustomerController (private val service: CustomerService){
